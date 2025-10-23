@@ -1,65 +1,183 @@
-import Image from "next/image";
+// app/page.tsx
+const LIGHT_BLUE = '#b8eeff';
+import Image from 'next/image';
 
-export default function Home() {
+export default function HomePage() {
+  const shadowStyle = { 
+    textShadow: '3px 3px 5px rgba(0, 0, 0, 0.4)',
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main className="min-h-screen w-full bg-[#249AD6] p-4 relative overflow-hidden">
+      
+      {/* Container is now just a positioning context for absolute children */}
+      <div className="absolute top-0 w-full h-full">
+
+        {/* Brand Image */}
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src="/images/brand.png"
+          alt="Brand Logo"
+          width={200} 
+          height={100}
+          className="w-32 md:w-48 h-auto scale-150 absolute top-0 left-0 mt-8 ml-8 z-50" 
+          style={{
+            transform: 'translate(2.5vw, 2vh)',
+          }}
           priority
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        
+        {/* Tree (z-20) */}
+        <Image
+          src="/images/tree.gif"
+          alt="tree"
+          width={400} 
+          height={200}
+          className="w-32 md:w-48 lg:w-64 xl:w-80 2xl:w-96 h-auto scale-190 absolute z-20"
+          style={{ 
+            transform: 'translate(3vw, 17.7vh)',
+          }}
+          priority
+        />
+        
+        {/* Cloud 1 (z-10) */}
+        <Image
+          src="/images/cloud1.png"
+          alt="Cloud 1"
+          width={400} 
+          height={200}
+          className="w-32 md:w-48 lg:w-64 xl:w-80 2xl:w-96 h-auto scale-75 absolute z-10"
+          style={{ 
+            transform: 'translate(35vw, 13vh)',
+          }}
+        />
+        
+        {/* Cloud 2 (z-10) */}
+        <Image
+          src="/images/cloud2.png"
+          alt="Cloud 2"
+          width={400} 
+          height={200}
+          className="w-32 md:w-48 lg:w-64 xl:w-80 2xl:w-96 h-auto absolute z-10"
+          style={{ 
+            transform: 'translate(60vw, 8vh)',
+          }}
+          priority
+        />
+
+        <Image
+          src="/images/arrow.gif"
+          alt="Arrow"
+          width={400} 
+          height={200}
+          className="w-32 md:w-48 lg:w-64 xl:w-80 2xl:w-96 h-auto scale-20 absolute z-10"
+          style={{ 
+            transform: 'translate(260vw, 325vh)',
+          }}
+          priority
+        />
+
+        {/* 💬 NEW: SPEECH BUBBLE CONTAINER 💬 */}
+        {/* Note: In React/Next.js, we use Image component for images and background properties are limited/complex. 
+           I'll use a standard div and apply the exact styling you provided, assuming speech_bubble.png is a visual effect or filter.
+           If speech_bubble.png is a literal image, we'd need to use a separate Image component for it.
+           For maximum compatibility with your CSS, I'll stick to a styled <div>.
+        */}
+        <div
+          // Use absolute positioning with your exact pixel coordinates
+          className="absolute z-50" 
+          style={{
+            width: '260.37px',
+            height: '248.05px',
+            left: '343.35px',
+            top: '685.9px',
+            background: 'url(/images/speech_bubble2.png)', // Assuming path is public/images/
+            backgroundSize: 'contain', // Ensure the image fits
+            backgroundRepeat: 'no-repeat',
+            // backgroundBlendMode: 'screen', // JSX doesn't support kebab-case properties directly
+            filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))',
+            transform: 'translate(-1vw, -30vh)',
+            pointerEvents: 'none', // Prevents blocking clicks on elements below
+          }}
+        />
+
+        {/* 💬 NEW: DID YOU KNOW? TEXT 💬 */}
+        <div
+          // Use absolute positioning with your exact pixel coordinates
+          className="font-pixelify absolute z-50"
+          style={{
+            width: '136.42px',
+            height: '80.61px',
+            left: '418.22px',
+            top: '760.55px',
+            fontWeight: '700',
+            fontSize: '30px',
+            lineHeight: '48px',
+            display: 'flex',
+            alignItems: 'flex-end',
+            textAlign: 'center',
+            letterSpacing: '-0.05em',
+            color: '#2399CC',
+            transform: 'rotate(8.8deg) translate(-4.5vw, -30vh)',
+            // Ensure the text aligns properly within the box
+            justifyContent: 'center',
+            paddingBottom: '5px',
+          }}
+        >
+          did you know?
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+      </div>
+
+      {/* 🏆 Consolidated Text Content Container 🏆 */}
+      <div 
+          className="font-pixelify absolute right-0 top-1/2 -translate-y-1/3 w-full z-50 text-right" 
+          style={{ 
+            color: LIGHT_BLUE,
+            paddingRight: '4vw'
+          }}
+      > 
+        
+        {/* 1. "this building saves" block */}
+        <p 
+            className="font-bold"
+            style={{ 
+              ...shadowStyle, 
+              fontSize: '5rem', 
+              lineHeight: '0.9', 
+              margin: '1.75rem', 
+            }}
+        >
+            <span className="block">this</span>
+            <span className="block">building</span>
+            <span className="block">saves</span>
+        </p>
+
+        {/* 2. The large 'WATER' text */}
+        <h1 
+          className="font-bold block"
+          style={{ 
+            ...shadowStyle, 
+            fontSize: '13rem', 
+            lineHeight: '0.8', 
+            margin: '1.75rem' 
+          }}
+        >
+          WATER
+        </h1>
+        
+        {/* 3. Sub-Text with arrow */}
+        <p 
+            className="" 
+            style={{ 
+              ...shadowStyle, 
+              fontSize: '2.5rem', 
+              lineHeight: '0.9', 
+              margin: '1.75rem', 
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          <span className="mr-2"></span> more info coming soon
+        </p>
+      </div>
+    </main>
   );
 }
